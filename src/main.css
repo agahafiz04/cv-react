@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Work Sans", sans-serif;
+  font-size: clamp(0.75rem, 0.6676rem + 0.4706vw, 1.25rem);
+}
+
+#root {
+  min-height: 100vh;
+  max-width: 1980px;
+  padding: 10px 20px;
+  margin: 0 auto;
+  border: 1px solid black;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 14px;
+}
