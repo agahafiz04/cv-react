@@ -2,11 +2,15 @@
 main {
   display: flex;
   justify-content: space-around;
-  gap: 50px;
+  gap: 25px;
+}
+
+label {
+  margin-bottom: 5px;
 }
 
 input {
-  padding: 5px;
+  padding: 7px;
   outline: none;
   border: 2px solid black;
   border-radius: 6px;
@@ -19,8 +23,22 @@ section.cv-output {
   flex-direction: column;
 }
 
+/* Input Section */
+
 section.input-form {
-  gap: 30px;
+  gap: 15px;
+  max-height: calc(100vh - 100px - 100px);
+  overflow-y: scroll;
+}
+
+section.input-form::-webkit-scrollbar {
+  display: none;
+}
+
+section.input-form .form {
+  border: 2px solid black;
+  border-top: none;
+  padding: 25px;
 }
 
 section.input-form .form ul {
@@ -33,14 +51,128 @@ section.input-form .form ul li {
   margin-bottom: 10px;
 }
 
-section.cv-output {
-  min-width: 500px;
-  max-width: 600px;
+section.input-form .form ul li.date-container {
+  flex-direction: row;
+  gap: 20px;
 }
+
+section.input-form .form ul li.date-container input {
+  margin-top: 7px;
+  display: block;
+}
+
+section.input-form .form h1 {
+  margin-bottom: 10px;
+}
+
+section.input-form .form button {
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: none;
+  margin-top: 20px;
+
+  justify-content: flex-end;
+}
+
+/* Output Section */
 
 section.cv-output .output {
   border: 2px solid black;
   text-align: center;
-  min-height: 100%;
-  padding: 25px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  font-size: 14px;
+
+  min-height: 700px;
+  min-width: 400px;
+  max-width: 600px;
+
+  display: grid;
+  grid-template-rows: 0.1fr 0.2fr 0.4fr 0.4fr;
+  justify-content: center;
+  align-items: start;
+}
+
+section.cv-output .output > div {
+  display: grid;
+}
+
+section.cv-output .output .output-main-title {
+  font-size: 2rem;
+  /* border-bottom: 3px solid black; */
+  padding-bottom: 10px;
+}
+
+section.cv-output .output h2.fullName {
+  grid-column: 1 / -1;
+  padding-bottom: 10px;
+}
+
+section.cv-output .output .cv-general {
+  padding-top: 10px;
+
+  grid-template-columns: repeat(3, max-content);
+  column-gap: 14px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+section.cv-output .output .cv-entry {
+  display: grid;
+  margin-top: 10px;
+  row-gap: 5px;
+  grid-template-columns: 0.7fr 0.3fr;
+}
+
+section.cv-output .output .cv-entry > div {
+  display: flex;
+  gap: 5px;
+}
+
+section.cv-output .output .cv-output-title {
+  grid-column: 1 / -1;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+section.cv-output .output .cv-entry .cv-education-place {
+  justify-self: end;
+  grid-row: 2;
+  grid-column: 2 / 2;
+}
+
+section.cv-output .output .cv-entry .cv-dates {
+  justify-self: end;
+}
+
+section.cv-output .output .cv-entry .cv-job-place {
+  justify-self: start;
+  grid-row: 2;
+  grid-column: 1 / 1;
+}
+
+/* Toggle / Component Container */
+div.component-container .toggle-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+div.component-container .toggle-button {
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: none;
+  font-size: 15px;
+
+  justify-content: flex-end;
+}
+
+div.component-container .toggle-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
 }

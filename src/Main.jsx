@@ -1,9 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header.jsx";
 import App from "./components/App.jsx";
-import Footer from "./components/Footer.jsx";
 import "./main.css";
+
+function Header() {
+  return (
+    <header>
+      <h1>CV Generator</h1>
+      <p>CV Generator Can Create Your Profile With Ease</p>
+    </header>
+  );
+}
+
+function Footer() {
+  <footer>
+    <p>
+      Copyright @agahafiz <i className="devicon-github-original colored"></i>
+    </p>
+  </footer>;
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
