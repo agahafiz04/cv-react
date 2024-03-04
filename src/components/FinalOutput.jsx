@@ -1,12 +1,19 @@
+/* eslint-disable react/prop-types */
 import "../styles/app.css";
-import { GeneralOutput } from "./General";
 
-export default function FinalOutput() {
+export default function FinalOutput({ general }) {
   return (
     <div className="output">
       <h1 className="output-main-title">Curriculum Vitae</h1>
       <div className="cv-general">
-        <GeneralOutput />
+        <h2 className="fullName">{general.fullName}</h2>
+        <div>
+          {general.email && <p className="email">&#9993; {general.email}</p>}
+          {general.phone && <p className="phone">&#128222; {general.phone}</p>}
+          {general.address && (
+            <p className="address">&#127968; {general.address}</p>
+          )}
+        </div>
       </div>
       <div className="cv-education">
         <h2 className="cv-output-title">Education History</h2>

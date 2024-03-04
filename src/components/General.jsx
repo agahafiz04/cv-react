@@ -1,31 +1,25 @@
 /* eslint-disable react/prop-types */
 import "../styles/app.css";
-import { useState } from "react";
 
-const inputList = new Object();
-
-export default function GeneralInfo() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [city, setCity] = useState("");
+export default function GeneralInfo({ general, setGeneral }) {
+  console.log(general);
 
   const handleChange = (event) => {
     switch (event.target.id) {
       case "name":
-        setFullName(event.target.value);
+        setGeneral({ ...general, fullName: event.target.value });
         break;
 
       case "email":
-        setEmail(event.target.value);
+        setGeneral({ ...general, email: event.target.value });
         break;
 
       case "phone":
-        setPhone(event.target.value);
+        setGeneral({ ...general, phone: event.target.value });
         break;
 
       case "city":
-        setCity(event.target.value);
+        setGeneral({ ...general, address: event.target.value });
         break;
 
       default:
@@ -43,8 +37,9 @@ export default function GeneralInfo() {
             name="name"
             id="name"
             placeholder="Robert Downy Jr."
-            value={fullName}
+            value={general.fullName}
             onChange={handleChange}
+            maxLength={35}
           />
         </li>
         <li>
@@ -54,8 +49,9 @@ export default function GeneralInfo() {
             name="email"
             id="email"
             placeholder="example@mail.com"
-            value={email}
+            value={general.email}
             onChange={handleChange}
+            maxLength={25}
           />
         </li>
         <li>
@@ -65,8 +61,9 @@ export default function GeneralInfo() {
             name="phone"
             id="phone"
             placeholder="762-900-299"
-            value={phone}
+            value={general.phone}
             onChange={handleChange}
+            maxLength={20}
           />
         </li>
         <li>
@@ -76,41 +73,30 @@ export default function GeneralInfo() {
             name="city"
             id="city"
             placeholder="Los Angeles - United States Of America"
-            value={city}
+            value={general.address}
             onChange={handleChange}
+            maxLength={40}
           />
         </li>
       </ul>
-      <button onClick={handleSave}>
-        <span>&#10003;</span>Save
-      </button>
     </div>
   );
 }
 
-function handleSave() {
-  inputList.name = fullName;
-  inputList.email = email;
-  inputList.phone = phone;
-  inputList.city = city;
+// export function GeneralOutput() {
+//   const [render, setRender] = useState(false);
 
-  const inputVal = Object.values(inputList);
+//   console.log("yow");
 
-  for (let i = 0; i < inputVal.length; i++) {
-    if (inputVal[i] === "") {
-      console.error("Please input all of the value");
-      return;
-    }
-  }
-}
-
-export function GeneralOutput() {
-  return (
-    <>
-      <h2 className="fullName">{inputList.name}</h2>
-      <p className="email">&#9993; {inputList.email}</p>
-      <p className="phone">&#128222; {inputList.phone}</p>
-      <p className="address">&#127968; {inputList.city}</p>
-    </>
-  );
-}
+//   {
+//     render && (
+//       <>
+//         {" "}
+//         <h2 className="fullName">{inputObject[0].name}</h2>
+//         <p className="email">&#9993; {inputObject[0].email}</p>
+//         <p className="phone">&#128222; {inputObject[0].phone}</p>
+//         <p className="address">&#127968; {inputObject[0].address}</p>
+//       </>
+//     );
+//   }
+// }

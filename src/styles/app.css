@@ -89,33 +89,30 @@ section.cv-output .output {
   max-width: 600px;
 
   display: grid;
+  grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 0.2fr 0.4fr 0.4fr;
   justify-content: center;
   align-items: start;
 }
 
-section.cv-output .output > div {
-  display: grid;
-}
-
 section.cv-output .output .output-main-title {
   font-size: 2rem;
-  /* border-bottom: 3px solid black; */
   padding-bottom: 10px;
 }
 
 section.cv-output .output h2.fullName {
-  grid-column: 1 / -1;
   padding-bottom: 10px;
 }
 
 section.cv-output .output .cv-general {
   padding-top: 10px;
+}
 
-  grid-template-columns: repeat(3, max-content);
-  column-gap: 14px;
-  margin: 0 auto;
-  height: 50px;
+section.cv-output .output .cv-general div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
 }
 
 section.cv-output .output .cv-entry {
@@ -131,7 +128,6 @@ section.cv-output .output .cv-entry > div {
 }
 
 section.cv-output .output .cv-output-title {
-  grid-column: 1 / -1;
   border-bottom: 2px solid black;
   padding-bottom: 5px;
   text-align: left;

@@ -1,17 +1,20 @@
+/* eslint-disable react/prop-types */
 import EducationInfo from "./Education";
 import GeneralInfo from "./General";
-import FinalOutput from "./Output";
 import WorkInfo from "./Work";
 import ToggleVisibility from "./Toggle";
 
-/* eslint-disable react/prop-types */
+import FinalOutput from "./FinalOutput";
+import { useState } from "react";
 
 export default function App() {
+  const [general, setGeneral] = useState({});
+
   return (
     <main>
       <section className="input-form">
         <ToggleVisibility name={"General Information"}>
-          <GeneralInfo />
+          <GeneralInfo general={general} setGeneral={setGeneral} />
         </ToggleVisibility>
 
         <ToggleVisibility name={"Education"}>
@@ -23,7 +26,7 @@ export default function App() {
         </ToggleVisibility>
       </section>
       <section className="cv-output">
-        <FinalOutput />
+        <FinalOutput general={general} />
       </section>
     </main>
   );
