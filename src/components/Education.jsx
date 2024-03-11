@@ -1,6 +1,55 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import "../styles/app.css";
 
-export default function EducationInfo() {
+let nextId = 0;
+
+export default function EducationInfo({ education, setEducation }) {
+  const [inputValue, setInputValue] = useState({
+    degree: "",
+    school: "",
+    startDate: "",
+    endDate: "",
+  });
+
+  function handleChange(event) {
+    switch (event.target.id) {
+      case "degree":
+        setInputValue({ ...inputValue, degree: event.target.value });
+        break;
+
+      case "school":
+        setInputValue({ ...inputValue, school: event.target.value });
+        break;
+
+      case "education-start-date":
+        setInputValue({ ...inputValue, startDate: event.target.value });
+        break;
+
+      case "education-end-date":
+        setInputValue({ ...inputValue, endDate: event.target.value });
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  function handleSave() {
+    const inputVal = Object.values(inputValue);
+    console.log(inputVal);
+
+    if (inputVal.length !== 5) {
+      console.error("Please input all of the value");
+      return;
+    } else {
+      setInputValue({ ...inputValue, id: nextId++ });
+      setEducation([...education, inputValue]);
+    }
+
+    console.log(education);
+  }
+
   return (
     <div className="education-info form">
       <ul>
@@ -10,7 +59,10 @@ export default function EducationInfo() {
             type="text"
             name="degree"
             id="degree"
-            placeholder="Bachelor Of Computer Engineering"
+            placeholder="Computer Engineering"
+            value={inputValue.degree || ""}
+            onChange={handleChange}
+            maxLength={30}
           />
         </li>
         <li>
@@ -20,6 +72,9 @@ export default function EducationInfo() {
             name="school"
             id="school"
             placeholder="Diponegoro University"
+            value={inputValue.school || ""}
+            onChange={handleChange}
+            maxLength={30}
           />
         </li>
         <li className="date-container">
@@ -29,6 +84,8 @@ export default function EducationInfo() {
               type="date"
               name="education-start-date"
               id="education-start-date"
+              value={inputValue.startDate || ""}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -37,11 +94,13 @@ export default function EducationInfo() {
               type="date"
               name="education-end-date"
               id="education-end-date"
+              value={inputValue.endDate || ""}
+              onChange={handleChange}
             />
           </div>
         </li>
       </ul>
-      <button>
+      <button onClick={handleSave}>
         <span>&#10003;</span>Save
       </button>
     </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../styles/app.css";
 
-export default function FinalOutput({ general }) {
+export default function FinalOutput({ general, education }) {
   return (
     <div className="output">
       <h1 className="output-main-title">Curriculum Vitae</h1>
@@ -17,7 +17,10 @@ export default function FinalOutput({ general }) {
       </div>
       <div className="cv-education">
         <h2 className="cv-output-title">Education History</h2>
-        <div className="cv-entry">
+        {education.map((eduItem) => (
+          <div className="cv-entry"></div>
+        ))}
+        {/* <div className="cv-entry">
           <div className="cv-degree-school">
             <p className="degree">Computer Engineering</p>
             <p className="school">Diponegoro University</p>
@@ -30,7 +33,7 @@ export default function FinalOutput({ general }) {
             <p className="city">Semarang</p>
             <p className="country">Indonesia</p>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="cv-work">
         <h2 className="cv-output-title">Work Experience</h2>

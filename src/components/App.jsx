@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export default function App() {
   const [general, setGeneral] = useState({});
+  const [education, setEducation] = useState([]);
 
   return (
     <main>
@@ -18,15 +19,15 @@ export default function App() {
         </ToggleVisibility>
 
         <ToggleVisibility name={"Education"}>
-          <EducationInfo />
+          <EducationInfo education={education} setEducation={setEducation} />
         </ToggleVisibility>
 
         <ToggleVisibility name={"Work Experience"}>
-          <WorkInfo />
+          {/* <WorkInfo /> */}
         </ToggleVisibility>
       </section>
       <section className="cv-output">
-        <FinalOutput general={general} />
+        <FinalOutput general={general} education={education} />
       </section>
     </main>
   );

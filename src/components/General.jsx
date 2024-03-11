@@ -37,7 +37,7 @@ export default function GeneralInfo({ general, setGeneral }) {
             name="name"
             id="name"
             placeholder="Robert Downy Jr."
-            value={general.fullName}
+            value={general.fullName || ""}
             onChange={handleChange}
             maxLength={35}
           />
@@ -49,7 +49,7 @@ export default function GeneralInfo({ general, setGeneral }) {
             name="email"
             id="email"
             placeholder="example@mail.com"
-            value={general.email}
+            value={general.email || ""}
             onChange={handleChange}
             maxLength={25}
           />
@@ -61,7 +61,7 @@ export default function GeneralInfo({ general, setGeneral }) {
             name="phone"
             id="phone"
             placeholder="762-900-299"
-            value={general.phone}
+            value={general.phone || ""}
             onChange={handleChange}
             maxLength={20}
           />
@@ -73,7 +73,7 @@ export default function GeneralInfo({ general, setGeneral }) {
             name="city"
             id="city"
             placeholder="Los Angeles - United States Of America"
-            value={general.address}
+            value={general.address || ""}
             onChange={handleChange}
             maxLength={40}
           />
@@ -82,21 +82,3 @@ export default function GeneralInfo({ general, setGeneral }) {
     </div>
   );
 }
-
-// export function GeneralOutput() {
-//   const [render, setRender] = useState(false);
-
-//   console.log("yow");
-
-//   {
-//     render && (
-//       <>
-//         {" "}
-//         <h2 className="fullName">{inputObject[0].name}</h2>
-//         <p className="email">&#9993; {inputObject[0].email}</p>
-//         <p className="phone">&#128222; {inputObject[0].phone}</p>
-//         <p className="address">&#127968; {inputObject[0].address}</p>
-//       </>
-//     );
-//   }
-// }
