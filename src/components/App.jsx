@@ -9,7 +9,28 @@ import { useState } from "react";
 
 export default function App() {
   const [general, setGeneral] = useState({});
-  const [education, setEducation] = useState([]);
+  const [education, setEducation] = useState([
+    {
+      degree: "",
+      school: "",
+      city: "",
+      country: "",
+      // description: "",
+      startDate: "",
+      endDate: "",
+      id: 0,
+    },
+  ]);
+  const [work, setWork] = useState([
+    {
+      jobTitle: "",
+      company: "",
+      jobDescription: "",
+      workStartDate: "",
+      workEndDate: "",
+      id: 0,
+    },
+  ]);
 
   return (
     <main>
@@ -23,11 +44,11 @@ export default function App() {
         </ToggleVisibility>
 
         <ToggleVisibility name={"Work Experience"}>
-          {/* <WorkInfo /> */}
+          <WorkInfo work={work} setWork={setWork} />
         </ToggleVisibility>
       </section>
       <section className="cv-output">
-        <FinalOutput general={general} education={education} />
+        <FinalOutput general={general} education={education} work={work} />
       </section>
     </main>
   );

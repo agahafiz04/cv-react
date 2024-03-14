@@ -13,14 +13,12 @@
 
 #root {
   height: 100vh;
-  min-width: 1100px;
-  max-width: 1500px;
+  max-width: 1700px;
   padding: 10px 20px;
   margin: 0 auto;
 
   display: grid;
-  grid-template-rows: 100px 1fr 25px;
-  row-gap: 20px;
+  grid-template-rows: 150px 1fr 50px;
 }
 
 /* Header Component */
@@ -30,12 +28,34 @@ header {
 
 header h1 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
 }
 
 header p {
   letter-spacing: 3px;
   line-height: 20px;
+}
+
+header .main-menu {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 150px 150px;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 10px;
+}
+
+header .main-menu button {
+  outline: none;
+  padding: 8px 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+header .main-menu button:hover {
+  background-color: black;
+  color: white;
 }
 
 /* Footer Component */

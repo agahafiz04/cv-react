@@ -2,8 +2,6 @@
 import "../styles/app.css";
 
 export default function GeneralInfo({ general, setGeneral }) {
-  console.log(general);
-
   const handleChange = (event) => {
     switch (event.target.id) {
       case "name":

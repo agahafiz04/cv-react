@@ -1,15 +1,18 @@
 /* Main App */
 main {
-  display: flex;
-  justify-content: space-around;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: minmax(400px, 600px) minmax(500px, 600px);
+  grid-auto-flow: column;
+  justify-content: center;
+  gap: 50px;
 }
 
 label {
   margin-bottom: 5px;
 }
 
-input {
+input,
+textarea {
   padding: 7px;
   outline: none;
   border: 2px solid black;
@@ -24,11 +27,12 @@ section.cv-output {
 }
 
 /* Input Section */
-
 section.input-form {
-  gap: 15px;
+  gap: 20px;
   max-height: calc(100vh - 100px - 100px);
   overflow-y: scroll;
+  /* min-width: max-content;
+  max-width: 500px; */
 }
 
 section.input-form::-webkit-scrollbar {
@@ -79,33 +83,30 @@ section.input-form .form button {
 section.cv-output .output {
   border: 2px solid black;
   text-align: center;
-  margin: 0 auto;
+
   padding: 20px;
   width: 100%;
   font-size: 14px;
 
   min-height: 700px;
-  min-width: 400px;
-  max-width: 600px;
+  /* min-width: 500px;
+  max-width: max-content; */
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.2fr 0.4fr 0.4fr;
+  grid-template-rows: 0.35fr 1fr 1fr;
   justify-content: center;
   align-items: start;
 }
 
 section.cv-output .output .output-main-title {
-  font-size: 2rem;
-  padding-bottom: 10px;
-}
-
-section.cv-output .output h2.fullName {
-  padding-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 section.cv-output .output .cv-general {
   padding-top: 10px;
+  margin-bottom: 10px;
 }
 
 section.cv-output .output .cv-general div {
@@ -117,36 +118,70 @@ section.cv-output .output .cv-general div {
 
 section.cv-output .output .cv-entry {
   display: grid;
-  margin-top: 10px;
+  margin-top: 20px;
   row-gap: 5px;
-  grid-template-columns: 0.7fr 0.3fr;
+  grid-template-columns: 1fr 0.5fr;
+}
+
+section.cv-output .output .cv-entry .description {
+  grid-column: 1 / -1;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+section.cv-output .output .cv-entry .cv-job-description {
+  grid-column: 1 / -1;
+  margin-top: 5px;
+  font-style: italic;
 }
 
 section.cv-output .output .cv-entry > div {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 
 section.cv-output .output .cv-output-title {
   border-bottom: 2px solid black;
+  margin-top: 20px;
   padding-bottom: 5px;
   text-align: left;
 }
 
-section.cv-output .output .cv-entry .cv-education-place {
-  justify-self: end;
-  grid-row: 2;
-  grid-column: 2 / 2;
-}
-
-section.cv-output .output .cv-entry .cv-dates {
-  justify-self: end;
-}
-
-section.cv-output .output .cv-entry .cv-job-place {
+section.cv-output .output .cv-entry *:nth-child(1),
+section.cv-output .output .cv-entry *:nth-child(3),
+section.cv-output .output .cv-entry *:nth-child(5) {
   justify-self: start;
-  grid-row: 2;
-  grid-column: 1 / 1;
+  text-align: start;
+}
+
+section.cv-output .output .cv-entry div:nth-child(2),
+section.cv-output .output .cv-entry div:nth-child(4) {
+  justify-self: end;
+}
+
+section.cv-output .output .cv-entry .city::after {
+  content: ",";
+}
+
+section.cv-output .output .cv-entry .cv-job-title::after {
+  content: " at";
+  font-size: 10px;
+  color: rgb(45, 48, 48);
+  position: relative;
+  top: -5px;
+}
+
+section.cv-output .output .cv-entry .degree,
+section.cv-output .output .cv-entry .cv-job-company {
+  font-weight: light;
+  color: rgb(105, 96, 96);
+}
+
+section.cv-output .output .cv-entry .school,
+section.cv-output .output .cv-entry .cv-job-title {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* Toggle / Component Container */

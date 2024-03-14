@@ -1,59 +1,79 @@
+export function Sembarang() {
+  return (
+    <div className="cv-education">
+      <h2 className="cv-output-title">Education History</h2>
+      {education.map((eduItem) => (
+        <div key={eduItem.id} className="cv-entry">
+          <p className="degree">{eduItem.degree}</p>
+          <div className="cv-dates">
+            <p className="cv-start-date">
+              {format(eduItem.startDate, "MM/dd/yyyy")}
+            </p>
+            {"-"}
+            <p className="cv-end-date">
+              {format(eduItem.endDate, "MM/dd/yyyy")}
+            </p>
+          </div>
+          <p className="school">{eduItem.school}</p>
+          <div className="cv-education-place">
+            <p className="city">{eduItem.city}</p>
+            <p className="country">{eduItem.country}</p>
+          </div>
+          <p className="description">{eduItem.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+//
+
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import "../styles/app.css";
 
-let nextId = 0;
+let nextId = 1;
 
-export default function EducationInfos({ education, setEducation }) {
+export default function EducationInfo({ education, setEducation }) {
+  const [inputValue, setInputValue] = useState({
+    degree: "",
+    school: "",
+    city: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    id: 0,
+  });
+
   function handleChange(event) {
     switch (event.target.id) {
       case "degree":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], degree: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, degree: event.target.value });
         break;
 
       case "school":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], school: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, school: event.target.value });
         break;
 
       case "education-start-date":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], startDate: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, startDate: event.target.value });
         break;
 
       case "education-end-date":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], endDate: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, endDate: event.target.value });
         break;
 
       case "eduCity":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], city: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, city: event.target.value });
         break;
 
       case "eduCountry":
-        setEducation([
-          ...education.slice(0, -1),
-          { ...education[nextId], country: event.target.value },
-        ]);
+        setInputValue({ ...inputValue, country: event.target.value });
         break;
 
-      // case "description":
-      //   setEducation([
-      //     ...education.slice(0, -1),
-      //     { ...education[nextId], description: event.target.value },
-      //   ]);
-      //   break;
+      case "description":
+        setInputValue({ ...inputValue, description: event.target.value });
+        break;
 
       default:
         break;
@@ -61,28 +81,15 @@ export default function EducationInfos({ education, setEducation }) {
   }
 
   function handleSave() {
-    const inputVal = Object.values(education[nextId]);
-
-    console.log(inputVal);
+    const inputVal = Object.values(inputValue);
 
     if (inputVal.includes("")) {
       console.error("There is an empty value!");
       return;
     }
 
-    setEducation([
-      ...education,
-      {
-        degree: "",
-        school: "",
-        city: "",
-        country: "",
-        // description: "",
-        startDate: "",
-        endDate: "",
-        id: ++nextId,
-      },
-    ]);
+    setInputValue({ ...inputValue, id: nextId++ });
+    setEducation([...education, inputValue]);
   }
 
   return (
@@ -95,7 +102,7 @@ export default function EducationInfos({ education, setEducation }) {
             name="degree"
             id="degree"
             placeholder="Computer Engineering"
-            value={education[nextId].degree || ""}
+            value={inputValue.degree || ""}
             onChange={handleChange}
             maxLength={30}
           />
@@ -107,7 +114,7 @@ export default function EducationInfos({ education, setEducation }) {
             name="school"
             id="school"
             placeholder="Diponegoro University"
-            value={education[nextId].school || ""}
+            value={inputValue.school || ""}
             onChange={handleChange}
             maxLength={35}
           />
@@ -119,7 +126,7 @@ export default function EducationInfos({ education, setEducation }) {
             name="eduCity"
             id="eduCity"
             placeholder="Semarang"
-            value={education[nextId].city || ""}
+            value={inputValue.city || ""}
             onChange={handleChange}
             maxLength={15}
           />
@@ -131,22 +138,22 @@ export default function EducationInfos({ education, setEducation }) {
             name="eduCountry"
             id="eduCountry"
             placeholder="Indonesia"
-            value={education[nextId].country || ""}
+            value={inputValue.country || ""}
             onChange={handleChange}
             maxLength={15}
           />
         </li>
-        {/* <li>
+        <li>
           <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"
             placeholder="Insert description here"
-            cols="10"
-            rows="7"
-            value={education[nextId].description}
+            cols="20"
+            rows="10"
+            value={inputValue.description}
             onChange={handleChange}></textarea>
-        </li> */}
+        </li>
         <li className="date-container">
           <div>
             <label htmlFor="education-start-date">Start Date</label>
@@ -154,7 +161,7 @@ export default function EducationInfos({ education, setEducation }) {
               type="date"
               name="education-start-date"
               id="education-start-date"
-              value={education[nextId].startDate || ""}
+              value={inputValue.startDate || ""}
               onChange={handleChange}
             />
           </div>
@@ -164,7 +171,7 @@ export default function EducationInfos({ education, setEducation }) {
               type="date"
               name="education-end-date"
               id="education-end-date"
-              value={education[nextId].endDate || ""}
+              value={inputValue.endDate || ""}
               onChange={handleChange}
             />
           </div>
